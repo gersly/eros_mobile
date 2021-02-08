@@ -10,7 +10,7 @@ export default function App() {
     <NavigationContainer>
     <View style={styles.container}>
       <RootStack />
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </View>
     </NavigationContainer>
   );
