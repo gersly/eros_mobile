@@ -27,7 +27,6 @@ export default function TopTab() {
     }}
     >
       <Tab.Screen name="Feed" component={PostListContainer} />
-      <Tab.Screen name="Trending" component={PostListContainer} />
     </Tab.Navigator>
   );
 }

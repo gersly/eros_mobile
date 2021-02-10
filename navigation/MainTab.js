@@ -4,6 +4,8 @@ import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 //screens
 import Feed from '../screens/Feed'
+import Updates from '../screens/Updates';
+import Settings from '../screens/Settings';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,6 +14,8 @@ export default function MainTab() {
     <Tab.Navigator
       initialRouteName="Feed"
       tabBarOptions={{
+        keyboardHidesTabBar: true,
+        showLabel: false,
         activeTintColor: '#e91e63',
       }}
     >
@@ -22,13 +26,14 @@ export default function MainTab() {
           title: 'Feed',
           tabBarLabel: 'Feed',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="home" color={color} size={28} />
           ),
         }}
       />
+      {/* 
       <Tab.Screen
         name="Notifications"
-        component={Feed}
+        component={Updates}
         options={{
           tabBarLabel: 'Updates',
           tabBarIcon: ({ color, size }) => (
@@ -39,14 +44,14 @@ export default function MainTab() {
       />
       <Tab.Screen
         name="Profile"
-        component={Feed}
+        component={Settings}
         options={{
           tabBarLabel: 'Profile',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 }

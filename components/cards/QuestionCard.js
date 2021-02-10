@@ -2,40 +2,44 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { Entypo } from '@expo/vector-icons'; 
 import { theme_style } from '../../styles/theme';
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function QuestionCard({question}) {
-    
+    const navigation = useNavigation()
     return (
         <View style={styles.cardContainer}>
             <View style={styles.cardHeader}>
                 <View style={{flex: 1}}>
-                <Text style={styles.NameUserStyle}>Gerson Lynch</Text>
-                <Text style={styles.QuestionCategory}>Sexual Health</Text>
+                <Text style={styles.NameUserStyle}>{question.user.name}</Text>
                 </View>
-                <View style={{flex: 1, alignItems: 'flex-end'}}>
+                <TouchableOpacity style={{flex: 1, alignItems: 'flex-end'}}>
                 <Entypo name="dots-three-horizontal" size={24} color="black" />
-                </View>
+                </TouchableOpacity>
             </View>
-            <View style={styles.cardContent}>
+            <TouchableOpacity 
+            onPress={() => navigation.navigate("Post", {question: question})}
+            style={styles.cardContent}>
                 <Text 
                 numberOfLines={2}
-                style={{fontSize: 16, color: '#333', fontWeight: 'bold'}}>
+                style={{fontSize: 16, color: '#333', fontWeight: 'bold', paddingVertical: 2}}>
                 {question.content}
                 </Text>
                 <Text 
                 numberOfLines={4}
                 style={{color: 'grey', fontSize: 14}}>
-                Mollit fugiat ipsum sit non. Quis voluptate officia ex Lorem ipsum irure. Sint excepteur laborum officia velit mollit qui consectetur ullamco mollit reprehenderit incididunt proident dolore. Tempor voluptate esse incididunt ea minim adipisicing esse non. In aliqua commodo Lorem consequat laboris occaecat incididunt ad. Id do dolore ex consequat quis consequat et.
+                {question.description}
                 </Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.cardFooter}>
-                <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
+                {/* <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-start'}}>
                 <Text style={{fontWeight: 'bold', color: '#333'}}> 3k upvotes</Text>
-                </View>
+                </View> */}
                 <View style={{flex: 1, justifyContent: 'center', alignItems: 'flex-end'}}>
                 <TouchableOpacity 
+                onPress={() => navigation.navigate("Post", {question: question})}
                 style={styles.commentButton}>
-                <Text style={styles.commentButtonText}>1.5k answers</Text>
+                <Text style={styles.commentButtonText}>{question.comments.length} Answer(s)</Text>
                 </TouchableOpacity>
                 </View>
             </View>
@@ -49,7 +53,7 @@ const styles = StyleSheet.create({
     cardContainer: {
         padding: 14,
         borderRadius: 3,
-        height: 240,
+        height: 'auto',
         marginHorizontal: 0,
         marginVertical: 2,
         backgroundColor: '#fff',
@@ -60,7 +64,7 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     cardContent:{
-        flex: 3,
+        flex: 4,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         marginVertical: 10
