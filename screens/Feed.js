@@ -40,9 +40,9 @@ export default class Feed extends React.Component {
       return (
         <View style={styles.foreground}>
           <Animated.View style={{ opacity: titleOpacity, flex: 1 }}>
-            <Text style={styles.message}>Welcome,</Text>
-            <Text style={styles.messageTitle}>Gerson</Text>
-            <Text style={{marginVertical: 14, color: '#fff', fontWeight: 'bold', fontSize: 18}}>What are you trying to find out?</Text>
+            <Text style={styles.message}>Hey,</Text>
+            <Text style={styles.messageTitle}>What have you been wondering about?</Text>
+            {/* <Text style={{marginVertical: 14, color: '#fff', fontWeight: 'bold', fontSize: 18}}>What are you trying to find out?</Text> */}
           </Animated.View>
         </View>
       )
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
       },
       messageTitle: {
         color: 'white',
-        fontSize: 42,
+        fontSize: 34,
         fontWeight: 'bold',
       },
       headerWrapper: {

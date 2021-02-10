@@ -1,55 +1,40 @@
 import React, {useEffect, useState} from 'react'
-import { View, Text, TextInput, Alert, TouchableOpacity, StyleSheet, ScrollView} from 'react-native'
+import { View, Text,Alert, TextInput, TouchableOpacity, StyleSheet, ScrollView} from 'react-native'
 import {theme_style} from '../styles/theme'
-import {useNavigation} from '@react-navigation/native'
-import {createPost} from '../api/posts'
 
-export default function CreateQuestion() {
-    const [question, setQuestion] = useState('')
-    const [description, setDescription] = useState('')
+import {useNavigation} from '@react-navigation/native'
+import {createComment} from '../api/comments'
+
+export default function CreateComment({...props}){
+    const [comment, setComment] = useState('')
+    const {postId, userUuid} = props.route.params
     const navigation = useNavigation()
 
     const handleSubmit = () => {
-        if( question.length > 4 ){
-            createPost({
-                userUuid: 'fa6d83bc-7376-4e4c-a9c3-d961997a5e65',
-                content: question,
-                description: description,
-                categoryId: 1
-            })
-            .then(res => {
-                if(res.status === 201){
-                    setDescription(''),
-                    setQuestion(''),
-                    Alert.alert(res.data.message)
-                    setTimeout(() => {
-                        navigation.goBack()
-                    }, 500);
-                }else{
-                    Alert.alert(res.data.message)
-                }
-            })
-        }
+       if(comment.length > 1){
+           createComment({postId: postId, userId: userUuid, content: comment})
+           .then(res => {
+            if(res.status === 201){
+                setComment(''),
+                Alert.alert(res.data.message)
+                setTimeout(() => {
+                    navigation.goBack()
+                }, 500);
+            }else{
+                Alert.alert(res.data.message)
+            }
+        })
+       }
     }
     return (
         <View style={styles.container}>
-            <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Your Question (required)</Text>
-                <TextInput
-                value={question}
-                autoCorrect={false}
-                onChangeText={(text) => setQuestion(text)}
-                maxLength={80}
-                multiline={true}
-                style={styles.inputField}/>
-            </View>
             <View style={styles.descriptionContainer}>
-                <Text style={styles.inputLabel}>Explain your question (optional)</Text>
+                <Text style={styles.inputLabel}>Create a comment for this post</Text>
                 <TextInput
                 autoCorrect={false}
-                value={description}
-                onChangeText={(text) => setDescription(text)}
-                maxLength={150}
+                value={comment}
+                onChangeText={(text) => setComment(text)}
+                maxLength={250}
                 multiline={true}
                 style={styles.descriptionField}/>
             </View>
@@ -58,7 +43,7 @@ export default function CreateQuestion() {
             activeOpacity={.7}
             onPress={() => handleSubmit()}
             style={styles.submitButton}>
-            <Text style={styles.submitButtonText}>Submit</Text>
+            <Text style={styles.submitButtonText}>Comment</Text>
             </TouchableOpacity>
             </View>
         </View>
