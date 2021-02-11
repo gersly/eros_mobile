@@ -49,7 +49,7 @@ export default function CreateQuestion() {
                 autoCorrect={false}
                 value={description}
                 onChangeText={(text) => setDescription(text)}
-                maxLength={150}
+                maxLength={750}
                 multiline={true}
                 style={styles.descriptionField}/>
             </View>

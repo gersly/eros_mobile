@@ -22,14 +22,14 @@ export default function Post({...props}) {
             </View>
                 <Text numberOfLines={3} style={styles.postCardQuestion}>{question.content}</Text>
                     <Text 
-                    numberOfLines={collapseDesription? 10 : 3} 
+                    numberOfLines={collapseDesription? 20 : 3} 
                     style={styles.postCardDescription}>
                     {question.description}
                     </Text>
                     <TouchableOpacity
                     onPress={() => setCollapseDescription(!collapseDesription)}
                     >
-                        <Text>Read More</Text>
+                    {collapseDesription? <Text>See Less</Text> : <Text>See More</Text>}
                     </TouchableOpacity>
             </View>
             <View style={{flex: 1}}>
