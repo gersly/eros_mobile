@@ -39,11 +39,11 @@ export default function PostListContainer() {
     );
   } else {
     return (
-      <ScrollView>
+      <View style={{flex: 1}}>
         {posts.map((question) => (
           <QuestionCard question={question} key={question.uuid} />
         ))}
-      </ScrollView>
+      </View>
     );
   }
 }
