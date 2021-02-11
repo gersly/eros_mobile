@@ -8,10 +8,10 @@ import RootStack from './navigation/RootStack'
 export default function App() {
   return (
     <NavigationContainer>
-    <View style={styles.container}>
-      <RootStack />
-      <StatusBar style="light" />
-    </View>
+      <View style={styles.container}>
+        <RootStack />
+        <StatusBar style="light" />
+      </View>
     </NavigationContainer>
   );
 }
